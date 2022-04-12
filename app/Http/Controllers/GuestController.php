@@ -39,15 +39,17 @@ class GuestController extends Controller
     {
         $this->authorize('admin');
 
-        $nama = $request->name;
-        $email = $request->email;
-        $description = $request->description;
+        Guest::create($request->all());
+        
+        // $nama = $request->name;
+        // $email = $request->email;
+        // $description = $request->description;
 
-        $data = new Guest();
-        $data->name = $nama;
-        $data->email = $email;
-        $data->description = $description;
-        $data->save();
+        // $data = new Guest();
+        // $data->name = $nama;
+        // $data->email = $email;
+        // $data->description = $description;
+        // $data->save();
 
         return redirect('/list');
     }
@@ -60,15 +62,18 @@ class GuestController extends Controller
      */
     public function store(StoreGuestRequest $request)
     {
-        $nama = $request->name;
-        $email = $request->email;
-        $description = $request->description;
+        Guest::create($request->all());
 
-        $data = new Guest();
-        $data->name = $nama;
-        $data->email = $email;
-        $data->description = $description;
-        $data->save();
+
+        // $nama = $request->name;
+        // $email = $request->email;
+        // $description = $request->description;
+
+        // $data = new Guest();
+        // $data->name = $nama;
+        // $data->email = $email;
+        // $data->description = $description;
+        // $data->save();
 
         return redirect('/')->with('inputStatus', 'Your data has been sent successfully!');
     }
@@ -101,17 +106,19 @@ class GuestController extends Controller
     {
         $this->authorize('admin');
 
+        $guest = Guest::find($request->id);
+        $guest->update($request->all());
 
-        $id = $request->id;
-        $name = $request->name;
-        $email = $request->email;
-        $description = $request->description;
+        // $id = $request->id;
+        // $name = $request->name;
+        // $email = $request->email;
+        // $description = $request->description;
 
-        $data = Guest::find($id);
-        $data->name = $name;
-        $data->email = $email;
-        $data->description = $description;
-        $data->update();
+        // $data = Guest::find($id);
+        // $data->name = $name;
+        // $data->email = $email;
+        // $data->description = $description;
+        // $data->update();
 
         return redirect('/list');
     }
