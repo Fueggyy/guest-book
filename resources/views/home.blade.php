@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-center">
         <div class="card" style="width: 80%;">
             <div class="card-header text-center">
-                <form action="/guest-action" method="post">
+                <form action="/list" method="post">
                     @csrf
                     <div class="align-items-center my-4">
                         <h2 class="fw-bold mx-3 mb-0">Hello, {{ Auth::user()->name }}</h2>
@@ -21,8 +21,13 @@
             <div class="card-body">
                 <label class="form-label" for="name">Full Name</label>
                 <div class="form-outline mb-4 form-floating">
-                    <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Name" value="{{ Auth::user()->name }}" autofocus required />
+                    <input type="text" id="name" name="name" class="form-control form-control-lg @error ('name') is-invalid @enderror" placeholder="Name" value="{{ Auth::user()->name }}" autofocus required />
                     <label class="form-label" for="name">Name</label>
+                    @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
 

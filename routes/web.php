@@ -5,6 +5,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,15 +34,40 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 
-Route::get('/list', [
-    GuestController::class,
-    'show',
-    "title" => "Guest Management"
-])->middleware('auth');
+// guest form action
+// Route::post('/guest-action', [GuestController::class, 'store']);
 
-Route::post('/guest-action', [GuestController::class, 'store']);
-Route::get('/list/add-guest', [GuestController::class, 'formAdd'])->middleware('admin');
-Route::get('/list/edit-guest/{id}', [GuestController::class, 'formEdit'])->middleware('admin');
-Route::post('/list/save', [GuestController::class, 'create'])->middleware('admin');
-Route::post('/list/edit-guest/save', [GuestController::class, 'edit'])->middleware('admin');
-Route::get('/list/delete-guest/{id}', [GuestController::class, 'delete'])->middleware('admin');
+
+// guest management
+Route::resource('/list', GuestController::class)->middleware('auth');
+
+
+// user management
+Route::get('/dashboard', [
+    DashboardController::class,
+    'index',
+    "title" => "User Management"
+])->middleware('admin');
+
+// store user
+Route::post('/dashboard', [
+    DashboardController::class,
+    'store',
+    "title" => "User Management"
+])->middleware('admin');
+
+// user form action
+Route::get('/dashboard/add', [
+    FormController::class,
+    'formAdd',
+    "title" => "User Management"
+])->middleware('admin');
+
+Route::get('/dashboard/update/{id}', [FormController::class, 'formEdit'])->middleware('admin');
+
+
+Route::get('/dashboard/{id}', [DashboardController::class, 'destroy'])->middleware('admin'); // delete user
+Route::post('/dashboard/update', [DashboardController::class, 'update'])->middleware('admin'); // update user
+
+
+

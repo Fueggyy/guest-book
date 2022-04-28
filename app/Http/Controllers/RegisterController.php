@@ -19,6 +19,7 @@ class RegisterController extends Controller
             'name' => ['required', 'min:3'],
             'email' => ['required', 'unique:users', 'email:dns'],
             'password' => ['required', 'min:5'],
+            'is_admin' => ['boolean'],
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
