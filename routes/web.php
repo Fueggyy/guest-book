@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ReportController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,8 @@ Route::get('/dashboard/update/{id}', [FormController::class, 'formEdit'])->middl
 
 Route::get('/dashboard/{id}', [DashboardController::class, 'destroy'])->middleware('admin'); // delete user
 Route::post('/dashboard/update', [DashboardController::class, 'update'])->middleware('admin'); // update user
+
+Route::get('/report', [ReportController::class, 'index'])->middleware('admin'); // delete user
 
 
 

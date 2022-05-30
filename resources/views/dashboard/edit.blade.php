@@ -42,17 +42,12 @@
 
             <label class="form-label" for="name">Role</label>
 
-            @if ($user->is_admin == 0)
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="is_admin" value="1">
-                <label class="form-check-label" for="exampleCheck1">Admin</label>
+            <div class="col-md-6">
+                <select id="role" class="form-control" name="is_admin">
+                    <option value="0" {{$user->is_admin == 0 ? 'selected' : ''}}>Guest</option>
+                    <option value="1" {{$user->is_admin == 1 ? 'selected' : ''}}>Admin</option>
+                </select>
             </div>
-            @else
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="is_admin" value="0">
-                <label class="form-check-label" for="exampleCheck1">Guest</label>
-            </div>
-            @endif
 
             <input type="hidden" name="id" value="{{$user->id}}">
             <div class="submit mt-4 pt-2 text-end">
