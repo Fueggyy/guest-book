@@ -28,21 +28,21 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                        <!-- <tr {{ ($users->currentPage()-1) * $users->perPage() + $loop->iteration }}> -->
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>
-                            @if ($user->is_admin == 1)
-                            <span class="badge bg-dark">Admin</span>
-                            @else
-                            <span class="badge bg-light text-dark">Guest</span>
-                            @endif
-                        <td>
-                            <a href="/dashboard/update/{{$user->id}}" class="btn btn-outline-dark">Update</a>
-                            <a href="/dashboard/{{$user->id}}" class="btn btn-outline-dark">Delete</a>
-                        <td>
-                        </td>
+                        <tr {{ ($users->currentPage()-1) * $users->perPage() + $loop->iteration }}>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                @if ($user->is_admin == 1)
+                                <span class="badge bg-dark">Admin</span>
+                                @else
+                                <span class="badge bg-light text-dark">Guest</span>
+                                @endif
+                            <td>
+                                <a href="/dashboard/update/{{$user->id}}" class="btn btn-outline-dark">Update</a>
+                                <a href="/dashboard/{{$user->id}}" class="btn btn-outline-dark">Delete</a>
+                            <td>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
